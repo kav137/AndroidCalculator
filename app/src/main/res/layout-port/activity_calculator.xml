@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_grey_900"
+    tools:context="imisno.com.calculator.CalculatorActivity">
+
+    <TextView
+        android:id="@+id/temp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_blank_fragment">
+
+    </TextView>
+
+    <fragment
+        android:id="@+id/simple_display_fragment"
+        android:name="imisno.com.calculator.DisplayFragment"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        tools:layout="@layout/fragment_display">
+    </fragment>
+    <fragment
+        android:id="@+id/simple_keyboard_fragment"
+        android:name="imisno.com.calculator.KeyboardFragment"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+
+        android:layout_gravity="bottom"
+        tools:layout="@layout/fragment_keyboard">
+    </fragment>
+
+</LinearLayout>

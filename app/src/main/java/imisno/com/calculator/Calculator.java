@@ -7,16 +7,16 @@ import org.mariuszgromada.math.mxparser.Expression;
  */
 
 abstract class Calculator {
-    Expression execExpression;
-    String expressionRepresentation;
-    boolean isExpressionInitiated;
+    protected Expression execExpression; //is used for calculations. all the values are in dec form here
+    protected String expressionRepresentation; //is used for display to user. values radix depends on current configuration
+    protected boolean isExpressionInitiated;
 
-    CalculatorOperand currentOperand;
-    String currentOperandRepresentation;
-    boolean isCurrentOperandInitiated;
+    protected CalculatorOperand currentOperand;
+    protected String currentOperandRepresentation;
+    protected boolean isCurrentOperandInitiated;
 
     //is used for the moment when currentOperator hasn't been initiated and we can change next operation
-    String currentOperationRepresentation;
+    protected String currentOperationRepresentation;
 
     public Calculator() {
         execExpression = new Expression();
@@ -53,6 +53,7 @@ abstract class Calculator {
 
     void resetCurrentOperand (){
         currentOperand.setOperandValue(0);
+        currentOperandRepresentation = currentOperand.getOperandRepresentation();
         isCurrentOperandInitiated = false;
     }
 }

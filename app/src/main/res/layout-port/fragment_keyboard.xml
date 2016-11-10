@@ -1,0 +1,147 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="imisno.com.calculator.KeyboardFragment"
+    android:background="@color/md_grey_900"
+    android:baselineAligned="false">
+
+    <!-- first column -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <Button
+            style="@style/OperationalButton"
+            android:contentDescription="@string/cd_buttonPlus"
+            android:text="@string/buttonPlus">
+        </Button>
+        <Button
+            style="@style/Buttons"
+            android:contentDescription="@string/cd_digitOneButton"
+            android:text="@string/button1">
+        </Button>
+        <Button
+            style="@style/Buttons"
+            android:contentDescription="@string/cd_digitFourButton"
+            android:text="@string/button4">
+        </Button>
+        <Button
+            style="@style/Buttons"
+            android:contentDescription="@string/cd_digitSevenButton"
+            android:text="@string/button7">
+        </Button>
+        <Button
+            style="@style/Buttons"
+            android:contentDescription="@string/cd_buttonNegate"
+            android:text="@string/buttonNegate">
+        </Button>
+    </LinearLayout>
+    <!-- second column -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <Button
+            style="@style/OperationalButton"
+            android:contentDescription="@string/cd_buttonMinus"
+            android:text="@string/buttonMinus">
+        </Button>
+        <Button
+            style="@style/Buttons"
+            android:contentDescription="@string/cd_digitTwoButton"
+            android:text="@string/button2">
+        </Button>
+        <Button
+            style="@style/Buttons"
+            android:contentDescription="@string/cd_digitFiveButton"
+            android:text="@string/button5">
+        </Button>
+        <Button
+            style="@style/Buttons"
+            android:contentDescription="@string/cd_digitEightButton"
+            android:text="@string/button8">
+        </Button>
+        <Button
+            style="@style/Buttons"
+            android:contentDescription="@string/cd_digitZeroButton"
+            android:text="@string/button0">
+        </Button>
+    </LinearLayout>
+    <!-- third column -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <Button
+            style="@style/OperationalButton"
+            android:contentDescription="@string/cd_buttonMultiply"
+            android:text="@string/buttonMultiply">
+        </Button>
+        <Button
+            style="@style/Buttons"
+            android:contentDescription="@string/cd_digitThreeButton"
+            android:text="@string/button3">
+        </Button>
+        <Button
+            style="@style/Buttons"
+            android:contentDescription="@string/cd_digitSixButton"
+            android:text="@string/button6">
+        </Button>
+        <Button
+            style="@style/Buttons"
+            android:contentDescription="@string/cd_digitNineButton"
+            android:text="@string/button9">
+        </Button>
+        <Button
+            style="@style/Buttons"
+            android:contentDescription="@string/cd_buttonPeriod"
+            android:text="@string/buttonPeriod">
+        </Button>
+    </LinearLayout>
+    <!-- 4th column -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <Button
+            style="@style/OperationalButton"
+            android:contentDescription="@string/cd_buttonDivide"
+            android:text="@string/buttonDivide">
+        </Button>
+        <Button
+            style="@style/OperationalButton"
+            android:contentDescription="@string/cd_buttonCancel"
+            android:text="@string/buttonCancel">
+        </Button>
+        <Button
+            style="@style/OperationalButton"
+            android:contentDescription="@string/cd_buttonBackspace"
+            android:text="@string/buttonBackspace">
+        </Button>
+        <Button
+            style="@style/EqualButton"
+            android:contentDescription="@string/cd_buttonEqual"
+
+            android:text="@string/buttonEqual">
+        </Button>
+    </LinearLayout>
+
+
+</LinearLayout>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,6 +1,65 @@
 <resources>
     <string name="app_name">Calculator</string>
 
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment_land">Hello LANDSCAPE</string>
+    <string name="hello_blank_fragment_port">Hello PORTRAIT</string>
+
+    <!--SECTION : Text values -->
+
+    <!--Numeric buttons content-->
+    <string name="button1">1</string>
+    <string name="button2">2</string>
+    <string name="button3">3</string>
+    <string name="button4">4</string>
+    <string name="button5">5</string>
+    <string name="button6">6</string>
+    <string name="button7">7</string>
+    <string name="button8">8</string>
+    <string name="button9">9</string>
+    <string name="button0">0</string>
+
+    <!--Operational buttons-->
+    <string name="buttonEqual">=</string>
+    <string name="buttonCancel">C</string>
+    <string name="buttonBackspace">\u232B</string>
+    <string name="buttonPlus">+</string>
+    <string name="buttonMinus">-</string>
+    <string name="buttonMultiply">*</string>
+    <string name="buttonDivide">/</string>
+    <string name="buttonNegate">\u00B1</string>
+    <string name="buttonPeriod">.</string>
+
+    <!--END OF SECTION-->
+
+
+    <!--SECTION : ContentDescrption values-->
+
+    <!--Numeric buttons content descriptions-->
+    <string name="cd_digitOneButton">digit one button</string>
+    <string name="cd_digitTwoButton">digit two button</string>
+    <string name="cd_digitThreeButton">digit three button</string>
+    <string name="cd_digitFourButton">digit four button</string>
+    <string name="cd_digitFiveButton">digit five button</string>
+    <string name="cd_digitSixButton">digit six button</string>
+    <string name="cd_digitSevenButton">digit seven button</string>
+    <string name="cd_digitEightButton">digit eight button</string>
+    <string name="cd_digitNineButton">digit nine button</string>
+    <string name="cd_digitZeroButton">digit zero button</string>
+
+    <!--Operational buttons content description-->\
+    <string name="cd_buttonEqual">equal button</string>
+    <string name="cd_buttonCancel">cancel button</string>
+    <string name="cd_buttonBackspace">backspace button</string>
+    <string name="cd_buttonPlus">plus button</string>
+    <string name="cd_buttonMinus">minus button</string>
+    <string name="cd_buttonMultiply">multiply button</string>
+    <string name="cd_buttonDivide">divide button</string>
+    <string name="cd_buttonNegate">negate button</string>
+    <string name="cd_buttonPeriod">period button</string>
+
+    <!--END OF SECTION-->
+
+
 </resources>

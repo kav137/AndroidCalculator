@@ -17,33 +17,39 @@ class SimpleCalculator extends Calculator {
     @Override
     void selectOperation(String operationRepresentation) {
         if (isExpressionInitiated) {
-            if (isCurrentOperandInitiated) {
-                placeOperand(currentOperandRepresentation);
-                currentOperationRepresentation = operationRepresentation;
-                resetCurrentOperand();
-            }
-            else {
-                currentOperationRepresentation = operationRepresentation;
-            }
+            placeOperation(operationRepresentation);
         }
     }
 
     @Override
     void placeOperand(String operandRepresentation) {
-
+        isExpressionInitiated = true;
+        expressionRepresentation += operandRepresentation;
+        resetCurrentOperand();
     }
 
     @Override
     void placeOperation (String operationRepresentation) {
-
+        if (isCurrentOperandInitiated) {
+            placeOperand(currentOperandRepresentation);
+            currentOperationRepresentation = operationRepresentation;
+        }
+        else {
+            if (currentOperationRepresentation != null && currentOperationRepresentation.length() != 0) {
+                expressionRepresentation = expressionRepresentation.substring(0, expressionRepresentation.length() - 2);
+                currentOperationRepresentation = operationRepresentation;
+                expressionRepresentation += currentOperationRepresentation;
+            }
+        }
     }
+
 
     @Override
     void addSymbolToCurrentOperator(String symbol) {
         String newValue = currentOperandRepresentation + symbol;
         try {
-            Double.parseDouble(newValue);
-            currentOperandRepresentation = newValue;
+            currentOperand.setOperandValue(Double.parseDouble(newValue));
+            currentOperandRepresentation = currentOperand.getOperandRepresentation();
         }
         catch (Exception e) {
             Log.d(TAG, String.format("addSymbolToCurrentOperator : prevented conversion of %1$s to double", newValue));
@@ -52,6 +58,14 @@ class SimpleCalculator extends Calculator {
 
     @Override
     void calculate() {
-        
+        if (isCurrentOperandInitiated){
+            placeOperand(currentOperandRepresentation);
+        }
+        if (expressionRepresentation.length() != 0) {
+            execExpression.setExpressionString(expressionRepresentation);
+            double result = execExpression.calculate();
+            currentOperand.setOperandValue(result);
+
+        }
     }
 }
