@@ -2,6 +2,8 @@ package imisno.com.calculator;
 
 import android.util.Log;
 
+import java.math.BigDecimal;
+
 /**
  * Created by kav on 21.10.2016.
  */
@@ -9,10 +11,16 @@ import android.util.Log;
 public class Converter {
     private static final String TAG = "Converter";
 
-    public static double getValueFromString (String str, int radix) {
+    public static double getDecValueFromString (String str, int radix) {
         double retValue;
         try {
-            retValue = Integer.valueOf(str, radix);
+            if (radix == 10){
+                retValue = Double.valueOf(str);
+            }
+            else {
+                retValue = Integer.valueOf(str, radix);
+            }
+
         }
         catch (Exception e) {
             retValue = 0;
@@ -22,7 +30,7 @@ public class Converter {
     }
 
 
-    public static String getStringFromValue (double value, int radix) {
+    public static String getStringFromDecValue (double value, int radix) {
         String retStr = "";
         switch (radix) {
             case 2 : {

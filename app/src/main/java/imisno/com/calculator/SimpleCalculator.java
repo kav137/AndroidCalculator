@@ -1,8 +1,12 @@
 package imisno.com.calculator;
 
+import android.nfc.Tag;
 import android.text.format.Formatter;
 import android.util.Log;
 import android.util.StringBuilderPrinter;
+import android.widget.Toast;
+
+import java.math.BigDecimal;
 
 /**
  * Created by kav on 29.10.2016.
@@ -15,57 +19,62 @@ class SimpleCalculator extends Calculator {
     }
 
     @Override
-    void selectOperation(String operationRepresentation) {
-        if (isExpressionInitiated) {
-            placeOperation(operationRepresentation);
+    void placeOperation(String operationRepresentation) {
+        if (doesResetRequired) {
+            resetExpression();
         }
-    }
-
-    @Override
-    void placeOperand(String operandRepresentation) {
-        isExpressionInitiated = true;
-        expressionRepresentation += operandRepresentation;
-        resetCurrentOperand();
-    }
-
-    @Override
-    void placeOperation (String operationRepresentation) {
-        if (isCurrentOperandInitiated) {
+        if (currentOperand.isOperandInitiated()) {
             placeOperand(currentOperandRepresentation);
             currentOperationRepresentation = operationRepresentation;
+            expressionRepresentation += currentOperationRepresentation;
         }
         else {
             if (currentOperationRepresentation != null && currentOperationRepresentation.length() != 0) {
-                expressionRepresentation = expressionRepresentation.substring(0, expressionRepresentation.length() - 2);
+                trimExpressionLastChar();
                 currentOperationRepresentation = operationRepresentation;
                 expressionRepresentation += currentOperationRepresentation;
             }
         }
     }
 
-
     @Override
-    void addSymbolToCurrentOperator(String symbol) {
-        String newValue = currentOperandRepresentation + symbol;
-        try {
-            currentOperand.setOperandValue(Double.parseDouble(newValue));
-            currentOperandRepresentation = currentOperand.getOperandRepresentation();
+    void placeOperand(String operandRepresentation) {
+        if (doesResetRequired){
+            resetExpression();
+            doesResetRequired = false;
         }
-        catch (Exception e) {
-            Log.d(TAG, String.format("addSymbolToCurrentOperator : prevented conversion of %1$s to double", newValue));
+        if (operandRepresentation.charAt(operandRepresentation.length()-1) == '.') {
+            trimExpressionLastChar();
         }
+        if (currentOperand.isNegate()){
+            expressionRepresentation += "(" + operandRepresentation + ")";
+        }
+        else {
+            expressionRepresentation += operandRepresentation;
+        }
+        resetCurrentOperand();
     }
 
     @Override
-    void calculate() {
-        if (isCurrentOperandInitiated){
+    void calculate () throws ValueIsTooLargeException{
+        if (currentOperand.isOperandInitiated()){
             placeOperand(currentOperandRepresentation);
+        }
+        else if (currentOperationRepresentation != null){
+            trimExpressionLastChar();
+            currentOperationRepresentation = null;
         }
         if (expressionRepresentation.length() != 0) {
             execExpression.setExpressionString(expressionRepresentation);
-            double result = execExpression.calculate();
-            currentOperand.setOperandValue(result);
-
+            BigDecimal result = BigDecimal.valueOf(execExpression.calculate());
+            currentOperand.setRepresentation(result.toPlainString());
+            currentOperandRepresentation = currentOperand.getRepresentation();
+            if (currentOperandRepresentation.length() >= 18){
+                doesResetRequired = true;
+                throw new ValueIsTooLargeException("too large result");
+            }
         }
+        doesResetRequired = true;
     }
+
 }

@@ -20,6 +20,6 @@
         android:layout_weight="1"
         android:gravity="end|top"
         android:textSize="48sp"
-        android:text="@string/cd_buttonCancel" />
+        android:text="@string/cd_buttonClear" />
 
 </LinearLayout>

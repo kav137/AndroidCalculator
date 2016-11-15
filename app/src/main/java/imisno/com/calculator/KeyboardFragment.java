@@ -24,7 +24,11 @@ public class KeyboardFragment extends Fragment {
     public interface OnKeyClickedListener {
         void onDigitKeyPressed (String digit);
         void onOperationKeyPressed (String operationRepresentation);
+        void onBackspaceKeyPressed ();
+        void onClearKeyPressed ();
         void onEqualKeyPressed ();
+        void onNegateKeyPressed ();
+        void onPeriodKeyPressed ();
     }
 
     @Override
@@ -32,20 +36,10 @@ public class KeyboardFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_keyboard, container, false);
 
-        //set listeners for buttons
-        ArrayList<View> digitButtons = new ArrayList<>();
-        view.findViewsWithText(digitButtons, "digit", View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
-        for (View digitButtonView : digitButtons) {
-            Button digitButton = (Button)digitButtonView;
-            digitButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Button thisBtn = (Button)v;
-                    mCallback.onDigitKeyPressed(thisBtn.getText().toString());
-                }
-            });
-        }
-
+        initDigitKeysHandlers(view);
+        initOperationsKeysHandlers(view);
+        initServiceKeyHandlers(view);
+        //set listeners for operation buttons
         return view;
     }
 
@@ -62,4 +56,81 @@ public class KeyboardFragment extends Fragment {
         }
     }
 
+    private void initDigitKeysHandlers (View view) {
+        ArrayList<View> digitButtons = new ArrayList<>();
+        view.findViewsWithText(digitButtons, "digit", View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
+        for (View digitButtonView : digitButtons) {
+            Button digitButton = (Button)digitButtonView;
+            digitButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Button thisBtn = (Button)v;
+                    mCallback.onDigitKeyPressed(thisBtn.getText().toString());
+                }
+            });
+        }
+    }
+
+    private void initOperationsKeysHandlers (View view){
+        ArrayList<View> operationButtons = new ArrayList<>();
+        view.findViewsWithText(operationButtons, "operation", View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
+        for (View operationButtonView : operationButtons) {
+            Button operationButton = (Button)operationButtonView;
+            operationButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Button thisBtn = (Button)v;
+                    mCallback.onOperationKeyPressed(thisBtn.getText().toString());
+                }
+            });
+        }
+    }
+
+    private void initServiceKeyHandlers (View view) {
+        //equal button
+        Button equalBtn = (Button)view.findViewById(R.id.buttonEqual);
+        equalBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCallback.onEqualKeyPressed();
+            }
+        });
+
+        //period button
+        Button periodBtn = (Button)view.findViewById(R.id.buttonPeriod);
+        periodBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCallback.onPeriodKeyPressed();
+            }
+        });
+
+        //backspace button
+        Button backspaceBtn = (Button)view.findViewById(R.id.buttonBackspace);
+        backspaceBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCallback.onBackspaceKeyPressed();
+            }
+        });
+
+        //clear button
+        Button clearBtn = (Button)view.findViewById(R.id.buttonClear);
+        clearBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCallback.onClearKeyPressed();
+            }
+        });
+
+        //negate button
+        Button negateBtn = (Button)view.findViewById(R.id.buttonNegate);
+        negateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCallback.onNegateKeyPressed();
+            }
+        });
+
+    }
 }
