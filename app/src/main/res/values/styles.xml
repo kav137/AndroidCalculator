@@ -22,8 +22,8 @@
         <item name="android:background">@color/md_grey_800</item>
     </style>
 
-    <style name="EqualButton" parent="OperationalButton">
-        <item name="android:layout_weight">2</item>
+    <style name="LargeButton" parent="OperationalButton">
+        <item name="android:layout_weight">3</item>
         <!--<item name="android:background">@color/md_grey_700</item>-->
     </style>
 

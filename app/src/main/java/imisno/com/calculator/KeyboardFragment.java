@@ -26,9 +26,12 @@ public class KeyboardFragment extends Fragment {
         void onOperationKeyPressed (String operationRepresentation);
         void onBackspaceKeyPressed ();
         void onClearKeyPressed ();
+        void onClearCurrentKeyPressed ();
         void onEqualKeyPressed ();
         void onNegateKeyPressed ();
         void onPeriodKeyPressed ();
+        void onOpenBracketKeyPressed ();
+        void onCloseBracketKeyPressed ();
     }
 
     @Override
@@ -123,6 +126,15 @@ public class KeyboardFragment extends Fragment {
             }
         });
 
+        //clear current (CE) button
+        Button ceButton = (Button)view.findViewById(R.id.buttonClearCurrent);
+        ceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCallback.onClearCurrentKeyPressed();
+            }
+        });
+
         //negate button
         Button negateBtn = (Button)view.findViewById(R.id.buttonNegate);
         negateBtn.setOnClickListener(new View.OnClickListener() {
@@ -132,5 +144,22 @@ public class KeyboardFragment extends Fragment {
             }
         });
 
+        //opening bracket
+        Button openBracketButton = (Button)view.findViewById(R.id.buttonOpenBracket);
+        openBracketButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCallback.onOpenBracketKeyPressed();
+            }
+        });
+
+        // closing bracket
+        Button closeBracketButton = (Button)view.findViewById(R.id.buttonCloseBracket);
+        closeBracketButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCallback.onCloseBracketKeyPressed();
+            }
+        });
     }
 }

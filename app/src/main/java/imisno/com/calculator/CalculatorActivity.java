@@ -7,7 +7,6 @@ import android.widget.Toast;
 
 public class CalculatorActivity extends FragmentActivity
         implements KeyboardFragment.OnKeyClickedListener{
-    TextView temp;//TODO remove later
 
     public Calculator calculator;
     public DisplayFragment displayFragment;
@@ -17,8 +16,6 @@ public class CalculatorActivity extends FragmentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
 
-        temp = (TextView)findViewById(R.id.temp); //TODO remove later
-
         calculator = new SimpleCalculator();
         displayFragment = (DisplayFragment)getSupportFragmentManager()
                 .findFragmentById(R.id.simple_display_fragment);
@@ -27,24 +24,18 @@ public class CalculatorActivity extends FragmentActivity
 
     @Override
     public void onDigitKeyPressed(String digit) {
-        logger(digit);//TODO remove later
-
         calculator.addSymbolToCurrentOperand(digit);
-        displayFragment.updateCurrentOperandTextView(calculator.getCurrentOperandRepresentation());
+        updateView();
     }
 
     @Override
     public void onPeriodKeyPressed() {
-        logger(".");
-
         calculator.addSymbolToCurrentOperand(".");
         updateView();
     }
 
     @Override
     public void onOperationKeyPressed(String operationRepresentation) {
-        logger(operationRepresentation);
-
         calculator.placeOperation(operationRepresentation);
         updateView();
     }
@@ -60,7 +51,8 @@ public class CalculatorActivity extends FragmentActivity
         }
         catch (ValueIsTooLargeException e) {
             Toast.makeText(this, R.string.ui_tooLargeResult, Toast.LENGTH_LONG).show();
-            calculator.setDoesResetRequired(true);
+            calculator.setDoesExpressionResetRequired(true);
+            calculator.setDoesOperandResetRequired(true);
 //            calculator.reset();
         }
         updateView();
@@ -74,8 +66,6 @@ public class CalculatorActivity extends FragmentActivity
 
     @Override
     public void onBackspaceKeyPressed() {
-        logger(" bksp ");
-
         calculator.backspaceCurrentOperand();
         updateView();
     }
@@ -86,12 +76,22 @@ public class CalculatorActivity extends FragmentActivity
         updateView();
     }
 
-    private void logger (String symbol) {
-        if(temp.getText().toString() == getString(R.string.logger)){
-            temp.setText("");
-        }
-        String newValue = temp.getText() + symbol;
-        temp.setText(newValue);
+    @Override
+    public void onClearCurrentKeyPressed() {
+        calculator.resetCurrentOperand();
+        updateView();
+    }
+
+    @Override
+    public void onOpenBracketKeyPressed() {
+        calculator.openBracket();
+        updateView();
+    }
+
+    @Override
+    public void onCloseBracketKeyPressed() {
+        calculator.closeBracket();
+        updateView();
     }
 
     private void updateView (){

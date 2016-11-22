@@ -20,8 +20,9 @@ class SimpleCalculator extends Calculator {
 
     @Override
     void placeOperation(String operationRepresentation) {
-        if (doesResetRequired) {
-            resetExpression();
+        //check operand if it is valid we continue with it's value, drop otherwise
+        if (isValueLimitsExceeded(new BigDecimal(currentOperandRepresentation))){
+            resetIfNecessary();
         }
         if (currentOperand.isOperandInitiated()) {
             placeOperand(currentOperandRepresentation);
@@ -39,12 +40,15 @@ class SimpleCalculator extends Calculator {
 
     @Override
     void placeOperand(String operandRepresentation) {
-        if (doesResetRequired){
+        resetIfNecessary();
+        if (currentOperationRepresentation == null && bracketsCounter != 0){
             resetExpression();
-            doesResetRequired = false;
+//            doesResetRequired = false;
         }
-        if (operandRepresentation.charAt(operandRepresentation.length()-1) == '.') {
-            trimExpressionLastChar();
+        if (operandRepresentation.charAt(operandRepresentation.length()-1) == '.' && operandRepresentation.length() > 1) {
+//            trimExpressionLastChar();
+            currentOperand.backspace();
+            operandRepresentation = currentOperand.getRepresentation();
         }
         if (currentOperand.isNegate()){
             expressionRepresentation += "(" + operandRepresentation + ")";
@@ -69,12 +73,33 @@ class SimpleCalculator extends Calculator {
             BigDecimal result = BigDecimal.valueOf(execExpression.calculate());
             currentOperand.setRepresentation(result.toPlainString());
             currentOperandRepresentation = currentOperand.getRepresentation();
-            if (currentOperandRepresentation.length() >= 18){
-                doesResetRequired = true;
+
+            int lengthLimit = 18;
+            if (currentOperandRepresentation.length() >= lengthLimit){
+                currentOperand.setRepresentation(currentOperandRepresentation.substring(0, lengthLimit-1));
+                currentOperandRepresentation = currentOperand.getRepresentation();
+            }
+
+            if (isValueLimitsExceeded(result)){
+                doesOperandResetRequired = true;
+                currentOperand.reset();
                 throw new ValueIsTooLargeException("too large result");
             }
         }
-        doesResetRequired = true;
+        doesOperandResetRequired = true;
+        doesExpressionResetRequired = true;
+    }
+
+    private boolean isValueLimitsExceeded (BigDecimal value){
+        boolean isLimitExceeded = false;
+        String limit = "999999999999";
+        int maxComparisonResult = value.compareTo(new BigDecimal(limit));
+        int minComparisonResult = value.compareTo(new BigDecimal("-" + limit));
+        if (maxComparisonResult == 1 || minComparisonResult == -1) {
+            isLimitExceeded = true;
+        }
+
+        return isLimitExceeded;
     }
 
 }

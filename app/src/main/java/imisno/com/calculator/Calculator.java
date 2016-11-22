@@ -9,31 +9,133 @@ import org.mariuszgromada.math.mxparser.Expression;
 abstract class Calculator {
     protected Expression execExpression; //is used for calculations. all the values are in dec form here
     protected String expressionRepresentation; //is used for display to user. values radix depends on current configuration
-//    protected boolean isExpressionInitiated;
-    protected boolean doesResetRequired;
+    protected boolean doesExpressionResetRequired;
+    protected boolean doesOperandResetRequired;
 
     protected Operand currentOperand;
     protected String currentOperandRepresentation;
 
     //is used for the moment when currentOperator hasn't been initiated and we can change next operation
     protected String currentOperationRepresentation;
+    protected int bracketsCounter;
+
+    abstract void calculate () throws ValueIsTooLargeException;
+    // when we press some operation button
+    abstract void placeOperation (String operationRepresentation);
+    // when we have entered the operand and pass it to expression
+    abstract void placeOperand (String operandRepresentation);
 
     public Calculator() {
         execExpression = new Expression();
         expressionRepresentation = "";
-//        isExpressionInitiated = false;
-        doesResetRequired = false;
-        currentOperand = new Operand();
-        currentOperandRepresentation = currentOperand.getRepresentation();
         currentOperationRepresentation = null;
+        currentOperand = new Operand();
+        updateCurrentOperandRepresentation();
+        bracketsCounter = 0;
+        doesExpressionResetRequired = false;
+        doesOperandResetRequired = false;
     }
 
-    public void setDoesResetRequired(boolean doesResetRequired) {
-        this.doesResetRequired = doesResetRequired;
+    // when we press some digit or dot
+    void addSymbolToCurrentOperand (String symbol) {
+        resetIfNecessary();
+        currentOperand.addSymbolToOperand(symbol);
+        updateCurrentOperandRepresentation();
     }
 
-    public void setExecExpression(Expression execExpression) {
-        this.execExpression = execExpression;
+    void backspaceCurrentOperand () {
+        resetIfNecessary();
+        currentOperand.backspace();
+        updateCurrentOperandRepresentation();
+    }
+
+    void negateCurrentOperand () {
+        currentOperand.negate();
+        updateCurrentOperandRepresentation();
+    }
+
+    void openBracket () {
+        if (currentOperationRepresentation != null
+                || expressionRepresentation.endsWith("(")
+                || expressionRepresentation.length() == 0) {
+            expressionRepresentation += "(";
+            currentOperationRepresentation = null;
+        }
+        else {
+            expressionRepresentation += "*(";
+        }
+        bracketsCounter++;
+    }
+
+    void closeBracket () {
+        if (bracketsCounter <= 0) {
+            return;
+        }
+        if (currentOperationRepresentation.endsWith("(")){
+            trimExpressionLastChar();
+            bracketsCounter--;
+            return;
+        }
+        if (currentOperationRepresentation != null) {
+            if (currentOperand.isOperandInitiated()){
+                placeOperand(currentOperandRepresentation);
+            }
+            else {
+                trimExpressionLastChar();
+            }
+            currentOperationRepresentation = null;
+            expressionRepresentation += ")";
+        }
+        else {
+            if (currentOperand.isOperandInitiated()){
+                placeOperand(currentOperandRepresentation);
+            }
+            expressionRepresentation += ")";
+        }
+        bracketsCounter--;
+    }
+
+    void resetIfNecessary () {
+        if (doesOperandResetRequired) {
+            resetCurrentOperand();
+        }
+        if (doesExpressionResetRequired) {
+            resetExpression();
+        }
+    }
+    void reset () {
+        resetCurrentOperand();
+        resetExpression();
+        bracketsCounter = 0;
+    }
+
+    void resetCurrentOperand () {
+        currentOperand.reset();
+        doesOperandResetRequired = false;
+        updateCurrentOperandRepresentation();
+    }
+
+    void resetExpression () {
+        currentOperationRepresentation = null;
+        doesExpressionResetRequired = false;
+        expressionRepresentation = "";
+        execExpression.setExpressionString(expressionRepresentation);
+    }
+
+    protected void trimExpressionLastChar (){
+        expressionRepresentation = expressionRepresentation.substring(0, expressionRepresentation.length() - 1);
+    }
+
+    protected void updateCurrentOperandRepresentation () {
+        currentOperandRepresentation = currentOperand.getRepresentation();
+    }
+
+    public void setDoesExpressionResetRequired(boolean doesExpressionResetRequired) {
+        this.doesExpressionResetRequired = doesExpressionResetRequired;
+    }
+
+    public void setDoesOperandResetRequired(boolean doesOperandResetRequired) {
+        this.doesOperandResetRequired = doesOperandResetRequired;
     }
 
     public String getExpressionRepresentation() {
@@ -42,53 +144,5 @@ abstract class Calculator {
 
     public String getCurrentOperandRepresentation() {
         return currentOperandRepresentation;
-    }
-
-    abstract void calculate () throws ValueIsTooLargeException;
-    // when we press some operation button
-    abstract void placeOperation (String operationRepresentation);
-    // when we have entered the operand and pass it to expression
-    abstract void placeOperand (String operandRepresentation);
-    // when we press some digit or dot
-
-    void addSymbolToCurrentOperand (String symbol) {
-        if (doesResetRequired) {
-            reset();
-        }
-        currentOperand.addSymbolToOperand(symbol);
-        currentOperandRepresentation = currentOperand.getRepresentation();
-    };
-
-    void reset () {
-        resetCurrentOperand();
-        resetExpression();
-        doesResetRequired = false;
-    }
-
-    void resetCurrentOperand () {
-        currentOperand.reset();
-        currentOperandRepresentation = currentOperand.getRepresentation();
-    }
-
-    void resetExpression () {
-//        isExpressionInitiated = false;
-        currentOperationRepresentation = null;
-        doesResetRequired = false;
-        expressionRepresentation = "";
-        execExpression.setExpressionString(expressionRepresentation);
-    }
-
-    void backspaceCurrentOperand () {
-        currentOperand.backspace();
-        currentOperandRepresentation = currentOperand.getRepresentation();
-    }
-
-    void negateCurrentOperand () {
-        currentOperand.negate();
-        currentOperandRepresentation = currentOperand.getRepresentation();
-    }
-
-    protected void trimExpressionLastChar (){
-        expressionRepresentation = expressionRepresentation.substring(0, expressionRepresentation.length() - 1);
     }
 }

@@ -15,6 +15,12 @@
         android:layout_weight="1">
         <Button
             style="@style/OperationalButton"
+            android:id="@+id/buttonOpenBracket"
+            android:contentDescription="@string/cd_buttonOpenBracket"
+            android:text="@string/buttonOpenBracket">
+        </Button>
+        <Button
+            style="@style/OperationalButton"
             android:contentDescription="@string/cd_buttonPlus"
             android:text="@string/buttonPlus">
         </Button>
@@ -48,6 +54,12 @@
         android:layout_weight="1">
         <Button
             style="@style/OperationalButton"
+            android:id="@+id/buttonCloseBracket"
+            android:contentDescription="@string/cd_buttonCloseBracket"
+            android:text="@string/buttonCloseBracket">
+        </Button>
+        <Button
+            style="@style/OperationalButton"
             android:contentDescription="@string/cd_buttonMinus"
             android:text="@string/buttonMinus">
         </Button>
@@ -78,6 +90,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">
+        <Button
+            style="@style/OperationalButton"
+            android:id="@+id/buttonClearCurrent"
+            android:contentDescription="@string/cd_buttonClearCurrent"
+            android:text="@string/buttonClearCurrent">
+        </Button>
         <Button
             style="@style/OperationalButton"
             android:contentDescription="@string/cd_buttonMultiply"
@@ -113,14 +131,14 @@
         android:layout_weight="1">
         <Button
             style="@style/OperationalButton"
-            android:contentDescription="@string/cd_buttonDivide"
-            android:text="@string/buttonDivide">
-        </Button>
-        <Button
-            style="@style/OperationalButton"
             android:id="@+id/buttonClear"
             android:contentDescription="@string/cd_buttonClear"
             android:text="@string/buttonClear">
+        </Button>
+        <Button
+            style="@style/OperationalButton"
+            android:contentDescription="@string/cd_buttonDivide"
+            android:text="@string/buttonDivide">
         </Button>
         <Button
             style="@style/OperationalButton"
@@ -129,7 +147,7 @@
             android:text="@string/buttonBackspace">
         </Button>
         <Button
-            style="@style/EqualButton"
+            style="@style/LargeButton"
             android:id="@+id/buttonEqual"
             android:contentDescription="@string/cd_buttonEqual"
             android:text="@string/buttonEqual">

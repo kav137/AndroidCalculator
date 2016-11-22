@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 class Operand {
     private final String TAG = "Operand";
     private String representation;
-    private double decValue;
+    private double decValue; //is used only for multiRadix variant.
     private int radix;
     private boolean isOperandInitiated;
     private boolean isPeriodProvided;
@@ -33,6 +33,9 @@ class Operand {
     public void setRepresentation(String representation) {
         this.representation = representation;
         setDecValueAccordingRepresentation();
+        if (this.representation.contains(".")){
+            isPeriodProvided = true;
+        }
         if (decValue == 0) {
             isOperandInitiated = false;
         }

@@ -31,6 +31,9 @@
     <string name="buttonDivide">/</string>
     <string name="buttonNegate">\u00B1</string>
     <string name="buttonPeriod">.</string>
+    <string name="buttonOpenBracket">(</string>
+    <string name="buttonCloseBracket">)</string>
+    <string name="buttonClearCurrent">CE</string>
 
     <!--END OF SECTION-->
 
@@ -59,12 +62,16 @@
     <string name="cd_buttonDivide">divide operation button</string>
     <string name="cd_buttonNegate">negate button</string>
     <string name="cd_buttonPeriod">period button</string>
+    <string name="cd_buttonOpenBracket">opening bracket button</string>
+    <string name="cd_buttonCloseBracket">closing bracket button</string>
+    <string name="cd_buttonClearCurrent">closing bracket button</string>
 
     <!--END OF SECTION-->
 
     <!--Section UI-->
     <string name="ui_illegalResult">"Provided expression is not valid or the result is infinity. State has been reset"</string>
     <string name="ui_tooLargeResult">"The result is too big for further handling. Application state would be reset"</string>
+    <string name="ui_enterValue">"Please enter a value"</string>
 
 
 </resources>
