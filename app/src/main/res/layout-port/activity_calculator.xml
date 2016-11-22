@@ -19,7 +19,6 @@
         android:name="imisno.com.calculator.KeyboardFragment"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-
         android:layout_gravity="bottom"
         tools:layout="@layout/fragment_keyboard">
     </fragment>

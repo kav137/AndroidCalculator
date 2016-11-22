@@ -11,15 +11,13 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:textSize="24sp"
-        android:gravity="end|bottom"
-        android:text="@string/hello_blank_fragment" />
+        android:gravity="end|bottom"/>
     <TextView
         android:id="@+id/currentOperand"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="end|top"
-        android:textSize="48sp"
-        android:text="@string/cd_buttonClear" />
+        android:textSize="48sp"/>
 
 </LinearLayout>

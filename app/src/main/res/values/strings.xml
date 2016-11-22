@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">Calculator</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="logger">Logger =)</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="hello_blank_fragment_land">Hello LANDSCAPE</string>
-    <string name="hello_blank_fragment_port">Hello PORTRAIT</string>
+    <!--Section UI-->
+    <string name="ui_illegalResult">"Provided expression is not valid or the result is infinity. State has been reset"</string>
+    <string name="ui_tooLargeResult">"The result is too big for further handling. Application state would be reset"</string>
+    <string name="ui_enterValue">"Please enter a value"</string>
+    <!--END OF SECTION-->
 
     <!--SECTION : Text values -->
 
@@ -68,10 +68,6 @@
 
     <!--END OF SECTION-->
 
-    <!--Section UI-->
-    <string name="ui_illegalResult">"Provided expression is not valid or the result is infinity. State has been reset"</string>
-    <string name="ui_tooLargeResult">"The result is too big for further handling. Application state would be reset"</string>
-    <string name="ui_enterValue">"Please enter a value"</string>
 
 
 </resources>

@@ -55,6 +55,7 @@ abstract class Calculator {
     }
 
     void openBracket () {
+        resetIfNecessary();
         if (currentOperationRepresentation != null
                 || expressionRepresentation.endsWith("(")
                 || expressionRepresentation.length() == 0) {
@@ -68,12 +69,20 @@ abstract class Calculator {
     }
 
     void closeBracket () {
+        resetIfNecessary();
         if (bracketsCounter <= 0) {
             return;
         }
-        if (currentOperationRepresentation.endsWith("(")){
+        if (expressionRepresentation.endsWith("(")){
             trimExpressionLastChar();
             bracketsCounter--;
+            //restore operationRepresentation
+            if (expressionRepresentation.length() != 0){
+                Character lastChar = expressionRepresentation.charAt(expressionRepresentation.length() - 1);
+                if (lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/') {
+                    currentOperationRepresentation = lastChar.toString();
+                }
+            }
             return;
         }
         if (currentOperationRepresentation != null) {
@@ -83,8 +92,8 @@ abstract class Calculator {
             else {
                 trimExpressionLastChar();
             }
-            currentOperationRepresentation = null;
-            expressionRepresentation += ")";
+            currentOperationRepresentation = "*";
+            expressionRepresentation += ")*";
         }
         else {
             if (currentOperand.isOperandInitiated()){
@@ -116,6 +125,7 @@ abstract class Calculator {
     }
 
     void resetExpression () {
+        bracketsCounter = 0;
         currentOperationRepresentation = null;
         doesExpressionResetRequired = false;
         expressionRepresentation = "";

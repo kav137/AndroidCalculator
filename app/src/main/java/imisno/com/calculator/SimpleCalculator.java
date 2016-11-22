@@ -41,12 +41,11 @@ class SimpleCalculator extends Calculator {
     @Override
     void placeOperand(String operandRepresentation) {
         resetIfNecessary();
-        if (currentOperationRepresentation == null && bracketsCounter != 0){
-            resetExpression();
-//            doesResetRequired = false;
-        }
+        //what for?
+//        if (currentOperationRepresentation == null && bracketsCounter != 0){
+//            resetExpression();
+//        }
         if (operandRepresentation.charAt(operandRepresentation.length()-1) == '.' && operandRepresentation.length() > 1) {
-//            trimExpressionLastChar();
             currentOperand.backspace();
             operandRepresentation = currentOperand.getRepresentation();
         }
@@ -68,6 +67,14 @@ class SimpleCalculator extends Calculator {
             trimExpressionLastChar();
             currentOperationRepresentation = null;
         }
+
+        //close all brackets
+        while(bracketsCounter > 0) {
+            expressionRepresentation += ")";
+            bracketsCounter--;
+        }
+
+        //just to be sure
         if (expressionRepresentation.length() != 0) {
             execExpression.setExpressionString(expressionRepresentation);
             BigDecimal result = BigDecimal.valueOf(execExpression.calculate());
