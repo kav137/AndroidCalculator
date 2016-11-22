@@ -26,18 +26,13 @@ class Operand {
     public Operand() {
         setRadix(10);
         setRepresentation("0");
-
         isPeriodProvided = false;
         isNegate = false;
     }
 
-    private void setDecValueByRepresentation(String newRepresentation){
-        decValue = Converter.getDecValueFromString(newRepresentation, radix);
-    }
-
     public void setRepresentation(String representation) {
         this.representation = representation;
-        setDecValueByRepresentation(representation);
+        setDecValueAccordingRepresentation();
         if (decValue == 0) {
             isOperandInitiated = false;
         }
@@ -55,40 +50,38 @@ class Operand {
             return;
         }
         if (isOperandInitiated){
-            if (representation.length() == 15){
+            //trim too big values (int)
+            if (representation.length() >= 11 && !isPeriodProvided && !symbol.equals(".")){
+                representation = representation.substring(0, representation.length() - 1);
+            }
+            //trim floating part
+            if (representation.length() >= 17 && isPeriodProvided){
                 if (representation.charAt(representation.length() - 1) == '.') {
                     isPeriodProvided = false;
                 }
                 representation = representation.substring(0, representation.length() - 1);
             }
-            String newRepresentation = representation + symbol;
 
-            boolean isCorrect = checkRepresentationForPattern(newRepresentation);
-            if (isCorrect){
-                if (symbol.equals(".")){
-                    isPeriodProvided = true;
-                }
-                representation = newRepresentation;
-                setDecValueByRepresentation(representation);
+            String newRepresentation = representation + symbol;
+            if (symbol.equals(".")){
+                isPeriodProvided = true;
             }
+            representation = newRepresentation;
+            setDecValueAccordingRepresentation();
         }
         else{
-            if (symbol.equals("0")){
+            if (symbol.equals("0") && representation.equals("0")){
                 return;
             }
-            String newRepresentation = symbol;
-            boolean isCorrect = checkRepresentationForPattern(newRepresentation);
-            if (!isCorrect){
-                return;
-            }
+
             if (symbol.equals(".")){
-                representation += ".";
+                representation += "."; //representation is "0" already
                 isPeriodProvided = true;
             }
             else{
-                representation = newRepresentation;
+                representation = symbol;
             }
-            setDecValueByRepresentation(representation);
+            setDecValueAccordingRepresentation();
             isOperandInitiated = true;
         }
     }
@@ -108,7 +101,7 @@ class Operand {
             isNegate = false;
             isOperandInitiated = false;
         }
-        setDecValueByRepresentation(representation);
+        setDecValueAccordingRepresentation();
     }
 
     public void negate () {
@@ -122,6 +115,7 @@ class Operand {
             representation = "-" + representation;
         }
         isNegate = !isNegate;
+        setDecValueAccordingRepresentation();
     }
 
     public void reset () {
@@ -129,7 +123,27 @@ class Operand {
         isOperandInitiated = false;
         isPeriodProvided = false;
         isNegate = false;
-        setDecValueByRepresentation(representation);
+        setDecValueAccordingRepresentation();
+    }
+
+    public String getRepresentation() {
+        return representation;
+    }
+
+    public double getDecValue() {
+        return decValue;
+    }
+
+    public boolean isOperandInitiated() {
+        return isOperandInitiated;
+    }
+
+    public boolean isNegate() {
+        return isNegate;
+    }
+
+    private void setDecValueAccordingRepresentation(){
+        decValue = Converter.getDecValueFromString(representation, radix);
     }
 
     private boolean checkRepresentationForPattern (String testString) {
@@ -157,21 +171,5 @@ class Operand {
             }
         }
         return (matcher.groupCount() == 1);
-    }
-
-    public String getRepresentation() {
-        return representation;
-    }
-
-    public double getDecValue() {
-        return decValue;
-    }
-
-    public boolean isOperandInitiated() {
-        return isOperandInitiated;
-    }
-
-    public boolean isNegate() {
-        return isNegate;
     }
 }
