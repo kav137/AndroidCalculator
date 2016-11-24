@@ -5,6 +5,8 @@ import android.util.Log;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import imisno.com.calculator.utils.Converter;
+
 /**
  * Created by kav on 13.11.2016.
  */

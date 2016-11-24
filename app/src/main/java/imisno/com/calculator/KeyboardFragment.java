@@ -42,7 +42,6 @@ public class KeyboardFragment extends Fragment {
         initDigitKeysHandlers(view);
         initOperationsKeysHandlers(view);
         initServiceKeyHandlers(view);
-        //set listeners for operation buttons
         return view;
     }
 
@@ -59,7 +58,7 @@ public class KeyboardFragment extends Fragment {
         }
     }
 
-    private void initDigitKeysHandlers (View view) {
+    protected void initDigitKeysHandlers (View view) {
         ArrayList<View> digitButtons = new ArrayList<>();
         view.findViewsWithText(digitButtons, "digit", View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
         for (View digitButtonView : digitButtons) {
@@ -74,7 +73,7 @@ public class KeyboardFragment extends Fragment {
         }
     }
 
-    private void initOperationsKeysHandlers (View view){
+    protected void initOperationsKeysHandlers (View view){
         ArrayList<View> operationButtons = new ArrayList<>();
         view.findViewsWithText(operationButtons, "operation", View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
         for (View operationButtonView : operationButtons) {
@@ -89,7 +88,7 @@ public class KeyboardFragment extends Fragment {
         }
     }
 
-    private void initServiceKeyHandlers (View view) {
+    protected void initServiceKeyHandlers (View view) {
         //equal button
         Button equalBtn = (Button)view.findViewById(R.id.buttonEqual);
         equalBtn.setOnClickListener(new View.OnClickListener() {
@@ -101,6 +100,7 @@ public class KeyboardFragment extends Fragment {
 
         //period button
         Button periodBtn = (Button)view.findViewById(R.id.buttonPeriod);
+        //this button is disabled in programmer's mode
         periodBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

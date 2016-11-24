@@ -5,6 +5,8 @@
     <string name="ui_illegalResult">"Provided expression is not valid or the result is infinity. State has been reset"</string>
     <string name="ui_tooLargeResult">"The result is too big for further handling. Application state would be reset"</string>
     <string name="ui_enterValue">"Please enter a value"</string>
+    <string name="ui_switchToSimpleToast">Switching to calculation mode</string>
+    <string name="ui_switchToProgrammingToast">Switching to programming mode</string>
     <!--END OF SECTION-->
 
     <!--SECTION : Text values -->
@@ -20,6 +22,12 @@
     <string name="button8">8</string>
     <string name="button9">9</string>
     <string name="button0">0</string>
+    <string name="buttonA">A</string>
+    <string name="buttonB">B</string>
+    <string name="buttonC">C</string>
+    <string name="buttonD">D</string>
+    <string name="buttonE">E</string>
+    <string name="buttonF">F</string>
 
     <!--Operational buttons-->
     <string name="buttonEqual">=</string>
@@ -35,6 +43,17 @@
     <string name="buttonCloseBracket">)</string>
     <string name="buttonClearCurrent">CE</string>
 
+    <!--Logical buttons-->
+    <string name="buttonAnd">And</string>
+    <string name="buttonXor">Xor</string>
+    <string name="buttonOr">Or</string>
+    <string name="buttonNot">Not</string>
+
+    <!-- Toggles -->
+    <string name="buttonBin">BIN</string>
+    <string name="buttonOct">OCT</string>
+    <string name="buttonDec">DEC</string>
+    <string name="buttonHex">HEX</string>
     <!--END OF SECTION-->
 
 
@@ -51,6 +70,13 @@
     <string name="cd_digitEightButton">digit eight button</string>
     <string name="cd_digitNineButton">digit nine button</string>
     <string name="cd_digitZeroButton">digit zero button</string>
+    <string name="cd_digitAButton">digit hexademical A button</string>
+    <string name="cd_digitBButton">digit hexademical B button</string>
+    <string name="cd_digitCButton">digit hexademical C button</string>
+    <string name="cd_digitDButton">digit hexademical D button</string>
+    <string name="cd_digitEButton">digit hexademical E button</string>
+    <string name="cd_digitFButton">digit hexademical F button</string>
+
 
     <!--Operational buttons content description-->\
     <string name="cd_buttonEqual">equal button</string>
@@ -64,10 +90,20 @@
     <string name="cd_buttonPeriod">period button</string>
     <string name="cd_buttonOpenBracket">opening bracket button</string>
     <string name="cd_buttonCloseBracket">closing bracket button</string>
-    <string name="cd_buttonClearCurrent">closing bracket button</string>
+    <string name="cd_buttonClearCurrent">clear current button</string>
 
+    <!--Logical operations-->
+    <string name="cd_buttonAnd">Logical and button</string>
+    <string name="cd_buttonOr">Logical or button</string>
+    <string name="cd_buttonNot">Logical not button</string>
+    <string name="cd_buttonXor">Logical xor button</string>
+
+    <!-- Toggles -->
+    <string name="cd_binButton">BIN</string>
+    <string name="cd_octButton">OCT</string>
+    <string name="cd_decButton">DEC</string>
+    <string name="cd_hexButton">HEX</string>
     <!--END OF SECTION-->
-
 
 
 </resources>

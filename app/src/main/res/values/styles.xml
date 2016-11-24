@@ -14,7 +14,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@color/md_grey_700</item>
-        <item name="android:textColor">@color/md_grey_100</item>
+        <!--<item name="android:textColor">@drawable/awesome_button</item>-->
         <item name="android:textSize">18sp</item>
     </style>
 
@@ -24,12 +24,10 @@
 
     <style name="LargeButton" parent="OperationalButton">
         <item name="android:layout_weight">3</item>
-        <!--<item name="android:background">@color/md_grey_700</item>-->
     </style>
 
 
     <style name="FullscreenTheme" parent="AppTheme">
-        <!--<item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>-->
         <item name="android:windowActionBarOverlay">true</item>
         <item name="android:windowBackground">@null</item>
         <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>

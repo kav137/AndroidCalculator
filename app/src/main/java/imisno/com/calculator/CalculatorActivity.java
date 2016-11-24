@@ -1,12 +1,14 @@
 package imisno.com.calculator;
 
+import android.content.res.Configuration;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class CalculatorActivity extends FragmentActivity
-        implements KeyboardFragment.OnKeyClickedListener{
+        implements KeyboardFragment.OnKeyClickedListener,
+        ProgrammerKeyboardFragment.OnToggleListener,
+            ProgrammerKeyboardFragment.OnLogicKeyClickedListener{
 
     public Calculator calculator;
     public DisplayFragment displayFragment;
@@ -16,10 +18,32 @@ public class CalculatorActivity extends FragmentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
 
-        calculator = new SimpleCalculator();
-        displayFragment = (DisplayFragment)getSupportFragmentManager()
-                .findFragmentById(R.id.simple_display_fragment);
-        updateView();
+        Configuration config = getResources().getConfiguration();
+        if (config.orientation == Configuration.ORIENTATION_LANDSCAPE){
+            Toast.makeText(this, R.string.ui_switchToProgrammingToast, Toast.LENGTH_LONG).show();
+            calculator = new ProgrammerCalculator();
+            displayFragment = (DisplayFragment)getSupportFragmentManager()
+                    .findFragmentById(R.id.simple_display_fragment);
+        }
+        else {
+            Toast.makeText(this, R.string.ui_switchToSimpleToast, Toast.LENGTH_LONG).show();
+            calculator = new SimpleCalculator();
+            displayFragment = (DisplayFragment)getSupportFragmentManager()
+                    .findFragmentById(R.id.simple_display_fragment);
+            updateView();
+        }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
+            Toast.makeText(this, "Land onChange", Toast.LENGTH_LONG).show();
+        }
+        else {
+            Toast.makeText(this, "Port onChange", Toast.LENGTH_LONG).show();
+        }
+
     }
 
     @Override
@@ -53,7 +77,6 @@ public class CalculatorActivity extends FragmentActivity
             Toast.makeText(this, R.string.ui_tooLargeResult, Toast.LENGTH_LONG).show();
             calculator.setDoesExpressionResetRequired(true);
             calculator.setDoesOperandResetRequired(true);
-//            calculator.reset();
         }
         updateView();
     }
@@ -92,6 +115,46 @@ public class CalculatorActivity extends FragmentActivity
     public void onCloseBracketKeyPressed() {
         calculator.closeBracket();
         updateView();
+    }
+
+    @Override
+    public void onAndKeyPressed() {
+
+    }
+
+    @Override
+    public void onOrKeyPressed() {
+
+    }
+
+    @Override
+    public void onNotKeyPressed() {
+
+    }
+
+    @Override
+    public void onXorKeyPressed() {
+
+    }
+
+    @Override
+    public void onBinModeEnabled() {
+        return;
+    }
+
+    @Override
+    public void onOctModeEnabled() {
+
+    }
+
+    @Override
+    public void onDecModeEnabled() {
+
+    }
+
+    @Override
+    public void onHexModeEnabled() {
+
     }
 
     private void updateView (){

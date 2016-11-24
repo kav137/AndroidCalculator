@@ -6,21 +6,33 @@
     android:background="@color/md_grey_900"
     tools:context="imisno.com.calculator.CalculatorActivity">
 
-    <fragment
-        android:id="@+id/simple_display_fragment"
-        android:name="imisno.com.calculator.DisplayFragment"
-        android:layout_height="0dp"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_weight="1"
-        tools:layout="@layout/fragment_display">
-    </fragment>
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <!--<fragment-->
+            <!--android:id="@+id/radix_toggle"-->
+            <!--android:name="imisno.com.calculator.ToggleRadixFragment"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent">-->
+        <!--</fragment>-->
+        <fragment
+            android:id="@+id/simple_display_fragment"
+            android:name="imisno.com.calculator.DisplayFragment"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            tools:layout="@layout/fragment_display">
+        </fragment>
+    </LinearLayout>
     <fragment
-        android:id="@+id/simple_keyboard_fragment"
-        android:name="imisno.com.calculator.KeyboardFragment"
+        android:id="@+id/programmer_keyboard_fragment"
+        android:name="imisno.com.calculator.ProgrammerKeyboardFragment"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:layout_gravity="bottom"
-        tools:layout="@layout/fragment_keyboard">
+        tools:layout="@layout/fragment_programmer_keyboard">
     </fragment>
 
 </LinearLayout>

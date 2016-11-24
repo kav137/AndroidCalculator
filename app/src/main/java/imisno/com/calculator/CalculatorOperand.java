@@ -3,8 +3,8 @@ package imisno.com.calculator;
 import android.util.Log;
 
 import java.math.BigDecimal;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
+import imisno.com.calculator.utils.Converter;
 
 /**
  * Created by kav on 21.10.2016.
