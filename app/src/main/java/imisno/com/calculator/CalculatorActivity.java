@@ -34,17 +34,6 @@ public class CalculatorActivity extends FragmentActivity
         }
     }
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
-            Toast.makeText(this, "Land onChange", Toast.LENGTH_LONG).show();
-        }
-        else {
-            Toast.makeText(this, "Port onChange", Toast.LENGTH_LONG).show();
-        }
-
-    }
 
     @Override
     public void onDigitKeyPressed(String digit) {
@@ -139,22 +128,27 @@ public class CalculatorActivity extends FragmentActivity
 
     @Override
     public void onBinModeEnabled() {
-        return;
+        calculator.setRadix(2);
+        updateView();
+
     }
 
     @Override
     public void onOctModeEnabled() {
-
+        calculator.setRadix(8);
+        updateView();
     }
 
     @Override
     public void onDecModeEnabled() {
-
+        calculator.setRadix(10);
+        updateView();
     }
 
     @Override
     public void onHexModeEnabled() {
-
+        calculator.setRadix(16);
+        updateView();
     }
 
     private void updateView (){

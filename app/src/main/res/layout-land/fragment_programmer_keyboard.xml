@@ -19,53 +19,63 @@
         </Button>
         <Button
             style="@style/OperationalButton"
-            android:contentDescription="@string/cd_buttonMultiply"
-            android:text="@string/buttonMultiply">
-        </Button>
-        <Button
-            android:id="@+id/buttonAnd"
-            style="@style/OperationalButton"
-            android:contentDescription="@string/cd_buttonAnd"
-            android:text="@string/buttonAnd">
-        </Button>
-        <Button
-            android:id="@+id/buttonXor"
-            style="@style/OperationalButton"
-            android:contentDescription="@string/cd_buttonXor"
-            android:text="@string/buttonXor">
-        </Button>
-
-    </LinearLayout>
-    <!-- second column -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
-        <Button
-            style="@style/OperationalButton"
             android:contentDescription="@string/cd_buttonMinus"
             android:text="@string/buttonMinus">
+        </Button>
+        <Button
+            style="@style/OperationalButton"
+            android:contentDescription="@string/cd_buttonMultiply"
+            android:text="@string/buttonMultiply">
         </Button>
         <Button
             style="@style/OperationalButton"
             android:contentDescription="@string/cd_buttonDivide"
             android:text="@string/buttonDivide">
         </Button>
-        <Button
-            android:id="@+id/buttonOr"
-            style="@style/OperationalButton"
-            android:contentDescription="@string/cd_buttonOr"
-            android:text="@string/buttonOr">
-        </Button>
-        <Button
-            android:id="@+id/buttonNot"
-            style="@style/OperationalButton"
-            android:contentDescription="@string/cd_buttonNot"
-            android:text="@string/buttonNot">
-        </Button>
+        <!--<Button-->
+            <!--android:id="@+id/buttonAnd"-->
+            <!--style="@style/OperationalButton"-->
+            <!--android:contentDescription="@string/cd_buttonAnd"-->
+            <!--android:text="@string/buttonAnd">-->
+        <!--</Button>-->
+        <!--<Button-->
+            <!--android:id="@+id/buttonXor"-->
+            <!--style="@style/OperationalButton"-->
+            <!--android:contentDescription="@string/cd_buttonXor"-->
+            <!--android:text="@string/buttonXor">-->
+        <!--</Button>-->
 
     </LinearLayout>
+    <!-- second column -->
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1"-->
+        <!--android:orientation="vertical">-->
+        <!--<Button-->
+            <!--style="@style/OperationalButton"-->
+            <!--android:contentDescription="@string/cd_buttonMinus"-->
+            <!--android:text="@string/buttonMinus">-->
+        <!--</Button>-->
+        <!--<Button-->
+            <!--style="@style/OperationalButton"-->
+            <!--android:contentDescription="@string/cd_buttonDivide"-->
+            <!--android:text="@string/buttonDivide">-->
+        <!--</Button>-->
+        <!--<Button-->
+            <!--android:id="@+id/buttonOr"-->
+            <!--style="@style/OperationalButton"-->
+            <!--android:contentDescription="@string/cd_buttonOr"-->
+            <!--android:text="@string/buttonOr">-->
+        <!--</Button>-->
+        <!--<Button-->
+            <!--android:id="@+id/buttonNot"-->
+            <!--style="@style/OperationalButton"-->
+            <!--android:contentDescription="@string/cd_buttonNot"-->
+            <!--android:text="@string/buttonNot">-->
+        <!--</Button>-->
+
+    <!--</LinearLayout>-->
     <!-- third column -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -93,6 +103,7 @@
         <Button
             android:id="@+id/buttonNegate"
             style="@style/Buttons"
+            android:enabled="false"
             android:contentDescription="@string/cd_buttonNegate"
             android:text="@string/buttonNegate">
         </Button>

@@ -56,10 +56,10 @@ public final class ButtonSet {
     };
 
     public static final int[] LOGICAL_BUTTONS = {
-            R.id.buttonAnd,
-            R.id.buttonOr,
-            R.id.buttonXor,
-            R.id.buttonNot
+//            R.id.buttonAnd,
+//            R.id.buttonOr,
+//            R.id.buttonXor,
+//            R.id.buttonNot
 
     };
 

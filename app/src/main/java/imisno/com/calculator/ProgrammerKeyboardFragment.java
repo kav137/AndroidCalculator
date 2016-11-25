@@ -50,6 +50,8 @@ public class ProgrammerKeyboardFragment extends KeyboardFragment {
         initLogicalKeysHandlers(view);
         initToggleHandlers(view);
 
+        disableRadixDependentButtons(view);
+        enableDecButtons(view);
         return view;
     }
 
@@ -67,37 +69,38 @@ public class ProgrammerKeyboardFragment extends KeyboardFragment {
     }
 
     protected void initLogicalKeysHandlers (View view) {
-        Button andBtn = (Button)view.findViewById(R.id.buttonAnd);
-        andBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                logicCallback.onAndKeyPressed();
-            }
-        });
-
-        Button orBtn = (Button)view.findViewById(R.id.buttonOr);
-        orBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                logicCallback.onOrKeyPressed();
-            }
-        });
-
-        Button notBtn = (Button)view.findViewById(R.id.buttonNot);
-        notBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                logicCallback.onNotKeyPressed();
-            }
-        });
-
-        Button xorBtn = (Button)view.findViewById(R.id.buttonXor);
-        xorBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                logicCallback.onXorKeyPressed();
-            }
-        });
+        return;
+//        Button andBtn = (Button)view.findViewById(R.id.buttonAnd);
+//        andBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                logicCallback.onAndKeyPressed();
+//            }
+//        });
+//
+//        Button orBtn = (Button)view.findViewById(R.id.buttonOr);
+//        orBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                logicCallback.onOrKeyPressed();
+//            }
+//        });
+//
+//        Button notBtn = (Button)view.findViewById(R.id.buttonNot);
+//        notBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                logicCallback.onNotKeyPressed();
+//            }
+//        });
+//
+//        Button xorBtn = (Button)view.findViewById(R.id.buttonXor);
+//        xorBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                logicCallback.onXorKeyPressed();
+//            }
+//        });
     }
 
     protected void initToggleHandlers (final View view) {

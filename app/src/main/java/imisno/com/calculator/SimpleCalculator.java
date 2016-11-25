@@ -41,10 +41,6 @@ class SimpleCalculator extends Calculator {
     @Override
     void placeOperand(String operandRepresentation) {
         resetIfNecessary();
-        //what for?
-//        if (currentOperationRepresentation == null && bracketsCounter != 0){
-//            resetExpression();
-//        }
         if (operandRepresentation.charAt(operandRepresentation.length()-1) == '.' && operandRepresentation.length() > 1) {
             currentOperand.backspace();
             operandRepresentation = currentOperand.getRepresentation();
@@ -109,4 +105,8 @@ class SimpleCalculator extends Calculator {
         return isLimitExceeded;
     }
 
+    @Override
+    void setRadix(int newRadix) {
+        return;
+    }
 }

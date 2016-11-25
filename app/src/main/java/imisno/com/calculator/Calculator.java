@@ -24,6 +24,7 @@ abstract class Calculator {
     abstract void placeOperation (String operationRepresentation);
     // when we have entered the operand and pass it to expression
     abstract void placeOperand (String operandRepresentation);
+    abstract void setRadix (int newRadix);
 
     public Calculator() {
         execExpression = new Expression();

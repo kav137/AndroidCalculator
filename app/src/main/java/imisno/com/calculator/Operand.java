@@ -48,6 +48,7 @@ class Operand {
 
     public void setRadix(int radix) {
         this.radix = radix;
+        representation = Converter.getStringFromDecValue(decValue, radix);
     }
 
     public void addSymbolToOperand (String symbol){
